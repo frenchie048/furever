@@ -1,0 +1,40 @@
+.header-container {
+    padding: 5px;
+    background-color: #40A798;
+    min-height: 12vh;
+    max-height: 14vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    color: #F5E1DA;
+  }
+
+  .user-menu >  img {
+    min-height: 55px;
+    max-height: 60px;
+    min-width: 55px;
+    max-width: 60px;
+    border-radius: 50%;
+    /* background-image: url('../../../images/user-profile-example.png'); */
+    /* background-size: 70%; */
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
+  }
+
+  .company-info > img {
+    min-height: 40%;
+    max-height: 75px;
+    min-width: 40%;
+    max-width: 140px;
+    /* max-height: 65px; */
+    /* width: 55px; */
+  }
+
+  .matches-menu > img {
+    min-height: 45px;
+    max-height: 50px;
+    min-width: 45px;
+    max-width: 50px;
+    /* fill: whitesmoke; */
+  }

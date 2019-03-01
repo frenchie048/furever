@@ -1,68 +1,69 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Steps (done)
+- Create React App
 
-## Available Scripts
+## Front End
+- Installed react-swipeable-cards
+- Installed react-dom
+- installed react-responsive-carousel
+- installed axios
 
-In the project directory, you can run:
 
-### `npm start`
+# USER
+- Header.js: static home/header/two menus on sides
+- Deck.js: swipeable cards
+    - Card.js: card deck
+- Profile.js: profile/settings/preferences
+- Matches.js: "matches"/messages
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# RESCUE (if not using open API)
+- static home/header/menu on side
+- on homepage - cards for pets add/remove(archive)/edit
+- profile/settings
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Back End
+- Installed dotenv, body-parser, massive, express
+- Installed react-router dom
 
-### `npm run build`
+# USER
+- GET - showing list of saved pets
+- GET - showing profile
+- PUT - updating profile info
+- DELETE - remove a pet from saved pets
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# RESCUE
+- GET - showing list of rescue's posted pets
+- POST - make a new pet profile
+- DELETE - remove/archive a pet from availability
+- PUT - update a pet's profile
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Routing
+- Login - /
+- User - /user
+- Rescue - /rescue
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## DB
+user
+- user_id SERIAL PRIMARY KEY
+- first_name text not null
+- last_name text not null
+- picture text not null
+- age integer not null
+- email varchar not null
 
-### `npm run eject`
+pet
+- pet_id serial primary key
+- animal text not null
+- breed text not null
+- sex varchar(6) not null
+- size text not null
+- location integer(5) not null
+- name text not null
+- age text not null
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+shelter
+- shelter_id serial primary key
+- 
+- email varchar not null
+- phone_number

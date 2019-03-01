@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import './reset.css';
+import UserDashboard from './components/User/Dashboard/Dashboard';
+import Login from './components/Login/Login';
 import './App.css';
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <header>
+          {/* <Header /> */}
         </header>
+        <main>
+          {/* THIS WILL BECOME TERNARY - if not logged in, display Login component; else if logged in && user, display user dashboard; else if logged in && rescue, display rescue dashboard */}
+          {/* <Login /> */}
+          <UserDashboard />
+          {/* <RescueDash /> */}
+        </main>
       </div>
     );
   }

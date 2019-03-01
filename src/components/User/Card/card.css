@@ -1,0 +1,33 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .profile-photo-container  {
+    background: #fff;
+    overflow: hidden;
+} */
+
+.profile-photo-container {
+    display: inline-block;
+    border: 1px solid #444242;
+    border-radius: 8px;
+    width: 80vw;
+    max-width: 375px;
+    height: 60vh;
+    /* background-image: url('../../../images/harriet-1.JPG'); */
+    background-size: 95%;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+} 
+
+.card span {
+    content: "\2022";
+}
+
+.end-card {
+    text-align: center;
+}
