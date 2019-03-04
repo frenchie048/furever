@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import profPic from '../../../images/user-profile-example.png';
 import hamburger from '../../../images/icon-svg/bars-solid.svg';
 import logo from '../../../images/logo_transparent_cropped.png';
@@ -19,22 +19,22 @@ export default class Header extends Component {
         return (
             <div className='header-container'>
                 <div className='user-menu'>
-                    <Link to='/profile'>
+                    <NavLink to='/profile'>
                         <img src={profPic}
-                            alt="user's profile image"
+                            alt="user's profile"
                             onClick={this.profileMenuClick} />
-                    </Link>
+                    </NavLink>
                 </div>
                 <div className='company-info'>
-                    <Link to='/dashboard'>
-                        <img src={logo} />
-                    </Link>
+                    <NavLink to='/dashboard'>
+                        <img src={logo} alt="houser logo" />
+                    </NavLink>
                 </div>
                 <div className='matches-menu'>
-                    <Link to='/matches'>
-                        <img src={hamburger}
+                    <NavLink to='/matches'>
+                        <img src={hamburger} alt="menu"
                             onClick={this.matchesMenuClick} />
-                    </Link>
+                    </NavLink>
                 </div>
             </div>
         )

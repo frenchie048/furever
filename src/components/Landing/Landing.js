@@ -12,17 +12,18 @@ export default class Landing extends Component {
                     <h1>
                         I am...
                     </h1>
+                    <div className='user-login'>
+                        <Link to='/userlogin' >
+                            <button>Looking for a pet</button>
+                        </Link>
+                    </div>
+
                     <div className='rescue-login'>
                         {/* <Link> */}
                         <button>A Rescue/Shelter</button>
                         {/* </Link> */}
                     </div>
 
-                    <div className='user-login'>
-                        <Link to='/userlogin' >
-                            <button>Looking for a pet</button>
-                        </Link>
-                    </div>
                 </div>
             </div>
         )

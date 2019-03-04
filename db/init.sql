@@ -1,14 +1,21 @@
-create table user (
+drop table if exists furever_user;
+
+create table furever_user (
     user_id serial primary key
+    , email varchar not null
     , first_name text not null
     , last_name text not null
     , picture text 
-    , email varchar not null
     , username varchar not null
     , password varchar not null
 );
 
--- first name, last name, picture, age (must be over 18?), email
+insert into furever_user (email, first_name, last_name, picture, username, password)
+    values ('brittany@email.com', 'Brittany', 'French', 'https://scontent-sjc3-1.xx.fbcdn.net/v/t1.0-9/37027439_10212059341461706_3830127688543109120_n.jpg?_nc_cat=109&_nc_ht=scontent-sjc3-1.xx&oh=e7ab390a11e77797b03fa9245f060f14&oe=5D1A823C','frenchie', 'sherryNiles');
+
+-- first name, last name, picture, age , email, username, password
+
+drop table if exists pets;
 
 create table pets (
     pet_id serial primary key

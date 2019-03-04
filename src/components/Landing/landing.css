@@ -1,5 +1,5 @@
 .landing-page {
-    background:  #40A798;
+    background:  #64C4C7;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,17 +13,19 @@
     border: 1px;
     border-radius: 10px;
     justify-content: center;
-    background: rgb(36, 36, 36);
+    background: #2F2F2F;
     padding: 10px;
 }
 
-h1 {
+.landing-container > h1 {
     color: #F5E2DB;
+    font-size: 35px;
 }
 
 button {
-    background-color :#F5E2DB;
+    background-color :#F98A7C;
     /* color: #F5E2DB; */
+    font-size: 16px;
     border: none;
     border-radius: 4px;
     margin: 10px;
