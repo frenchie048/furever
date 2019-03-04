@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 // import { render } from 'react-dom';
 import { Card, CardWrapper } from 'react-swipeable-cards';
 import Carousel from './Carousel';
-// import HarrietProfile from '../../../images/harriet-1.JPG';
 import googleMap from '../../../images/map-example.PNG';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './card.css';

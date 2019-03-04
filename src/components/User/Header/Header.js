@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter, Link } from 'react-router-dom';
 import profPic from '../../../images/user-profile-example.png';
 import hamburger from '../../../images/icon-svg/bars-solid.svg';
 import logo from '../../../images/logo_transparent_cropped.png';
@@ -18,16 +19,22 @@ export default class Header extends Component {
         return (
             <div className='header-container'>
                 <div className='user-menu'>
-                    <img src={profPic}
-                        alt="user's profile image"
-                        onClick={this.profileMenuClick} />
+                    <Link to='/profile'>
+                        <img src={profPic}
+                            alt="user's profile image"
+                            onClick={this.profileMenuClick} />
+                    </Link>
                 </div>
                 <div className='company-info'>
-                    <img src={logo} />
+                    <Link to='/dashboard'>
+                        <img src={logo} />
+                    </Link>
                 </div>
                 <div className='matches-menu'>
-                    <img src={hamburger}
-                        onClick={this.matchesMenuClick} />
+                    <Link to='/matches'>
+                        <img src={hamburger}
+                            onClick={this.matchesMenuClick} />
+                    </Link>
                 </div>
             </div>
         )

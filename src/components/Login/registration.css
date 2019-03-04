@@ -1,4 +1,4 @@
-.login-container {
+.registration-container {
     background:  #40A798;
     display: flex;
     justify-content: center;
@@ -8,7 +8,7 @@
     color: #F5E2DB;
 }
 
-.user-login {
+.user-registration {
     min-height: 50%;
     min-width: 50%;
     border: 1px;

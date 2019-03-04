@@ -2,9 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 // const session = require('express-session');
 const massive = require('massive');
-// const axios = require('axios');
-// const authController = require('./controller/authController');
-// const crayonController = require('./controller/crayonController');
+const axios = require('axios');
+const controller = require('./controllers/controller');
 require('dotenv').config();
 
 const app = express();
@@ -22,6 +21,9 @@ massive(process.env.CONNECTION_STRING).then((db) => {
 })
 
 //endpoints
+axios.post('/api/users', controller.loginUser);
+
+axios.post('/api/users', controller.createUser);
 
 
 const PORT = 4000;
