@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-// import { render } from 'react-dom';
+import axios from 'axios';
+import { connect } from 'react-redux';
+
 import { Card, CardWrapper } from 'react-swipeable-cards';
 import Carousel from './Carousel';
 import googleMap from '../../../images/map-example.PNG';
@@ -9,7 +11,6 @@ import './card.css';
 //create custom end card
 class MyEndCard extends Component {
     render() {
-
         return (
             <div>You've finished swiping! Change your preferences to refresh, or try again later!</div>
         );
@@ -18,6 +19,11 @@ class MyEndCard extends Component {
 
 
 export default class PetCard extends Component {
+    // componentDidMount() {
+    //     axios.get('/api/pets').then(response => {
+    //         console.log(response.data)
+    //     })
+    // }
 
     //pass end card to the card wrapper
     getEndCard() {
@@ -28,6 +34,8 @@ export default class PetCard extends Component {
 
     //render card(s)
     render() {
+        // const { pets } = this.props;
+
         return (
             // <div className='card'>
             <CardWrapper addEndCard={this.getEndCard.bind(this)}>

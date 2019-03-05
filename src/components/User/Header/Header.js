@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import profPic from '../../../images/user-profile-example.png';
 import hamburger from '../../../images/icon-svg/bars-solid.svg';
 import logo from '../../../images/logo_transparent_cropped.png';
