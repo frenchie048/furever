@@ -2,34 +2,40 @@
 - Create React App
 
 ## Front End
-- Installed react-swipeable-cards
-- Installed react-dom
-- installed react-responsive-carousel
-- installed axios
-
+- react-swipeable-cards
+- react-dom
+- react-responsive-carousel
+- axios
+- bcrypt for auth (?)
 
 # USER
-- Header.js: static home/header/two menus on sides
-- Deck.js: swipeable cards
+- Header.js: static header w/ two menus on sides
+- Dashboard.js: header and swipeable cards
     - Card.js: card deck
 - Profile.js: profile/settings/preferences
 - Matches.js: "matches"/messages
 
-# RESCUE (if not using open API)
+# RESCUE
 - static home/header/menu on side
 - on homepage - cards for pets add/remove(archive)/edit
 - profile/settings
 
-
-
 ## Back End
-- Installed dotenv, body-parser, massive, express
-- Installed react-router dom
+- dotenv
+- body-parser
+- massive 
+- express
+- express-session
+- http-proxy-middleware
+- react-router-dom
+- react-redux
+- redux
 
 # USER
 - GET - showing list of saved pets
 - GET - showing profile
 - PUT - updating profile info
+- POST - add a pet to saved pets
 - DELETE - remove a pet from saved pets
 
 # RESCUE
@@ -39,30 +45,41 @@
 - PUT - update a pet's profile
 
 ## Routing
-- Login - /
-- User - /user
-- Rescue - /rescue
+- Landing - /
+- User
+    - UserLogin
+    - UserRegistration
+    - Dashboard
+- Rescue
+    - RescueLogin
+    - RescueRegistration
+    - Dashboard
 
 ## DB
 user
 - user_id SERIAL PRIMARY KEY
+- email varchar not null
 - first_name text not null
 - last_name text not null
 - picture text not null
-- age integer not null
-- email varchar not null
+- username varchar not null unique
+- password varchar not null
 
 pet
 - pet_id serial primary key
+- image text not null
+- name text not null
 - animal text not null
 - breed text not null
 - sex varchar(6) not null
 - size text not null
-- location integer(5) not null
-- name text not null
 - age text not null
+- city text not null
+- state varchar(2) not null
+- bio text not null
+- match_status boolean
 
-shelter
+shelter (TBD)
 - shelter_id serial primary key
 - 
 - email varchar not null
