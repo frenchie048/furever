@@ -1,3 +1,4 @@
 select * from furever_user 
     where username = $1
-    and where password = $2;
+    and password = $2
+    returning *;

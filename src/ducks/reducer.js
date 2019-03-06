@@ -9,14 +9,14 @@ const INITIAL_STATE = {
 }
 
 //action types
+
+//reducer function (w/ switch)
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         default:
             return state
     }
 }
-
-//reducer function (w/ switch)
 
 
 //action creators

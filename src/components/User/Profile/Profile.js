@@ -12,6 +12,7 @@ export default class Profile extends Component {
                     <h2>Profile</h2>
                     <h2>Preferences</h2>
                     <h2>Settings</h2>
+                    <h2>Logout</h2>
                 </main>
             </div>
         )

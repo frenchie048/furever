@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import backgroundVid2 from '../../../images/Cat-9328.mp4';
-import backgroundVid3 from '../../../images/Dog-20608.mp4';
+import backgroundVid2 from '../../../images/Cat-9328.mp4';
 import logo from '../../../images/logo_transparent_cropped.png';
 import axios from 'axios';
 import '../login.css';
@@ -18,7 +17,7 @@ export default class UserLogin extends Component {
         this.loginUser = this.loginUser.bind(this);
     }
 
-    loginUser() {
+    loginUser(id) {
         const { username, password } = this.state;
 
         let existingUser = {
@@ -26,11 +25,12 @@ export default class UserLogin extends Component {
             password
         }
 
-        axios.get(`/api/users/${username}`, existingUser).then(response => {
+        axios.post(`/api/users`, existingUser).then(response => {
             console.log(response.data)
             window.location = `/#/dashboard`;
         })
     }
+
 
     render() {
         const { username, password } = this.state;
@@ -40,8 +40,8 @@ export default class UserLogin extends Component {
                 <video
                     // poster={} 
                     className='background-video' autoPlay loop muted playsInline>
-                    <source src={backgroundVid3} type='video/mp4' />
-                    <source src={backgroundVid3} type='video/ogg' />
+                    <source src={backgroundVid2} type='video/mp4' />
+                    <source src={backgroundVid2} type='video/ogg' />
                 </video>
 
                 <div className='login-container'>
