@@ -31,6 +31,7 @@ export default class PetCard extends Component {
         this.getPets();
     }
 
+    //will need to change to 'unswiped' pets
     getPets() {
         axios.get('/api/pets').then(response => {
             this.setState({
@@ -41,28 +42,45 @@ export default class PetCard extends Component {
 
     //ON SWIPE 
 
-    onSwipe(pets) {
-        console.log(pets.name + " was swiped.");
+    // onSwipe(pets) {
+    //     console.log(pets.name + " was swiped.");
+    // }
+
+    //need to make left(no) action
+    onSwipeLeft(pets) {
+        console.log(pets.name + " was swiped left.");
     }
+
+    //need to make right(yes) action
+    onSwipeRight(pets) {
+        console.log(pets.name + " was swiped right.");
+    }
+
 
     //pass end card to the card wrapper
     getEndCard() {
         return (
-            <MyEndCard className='end-card' />
+            <MyEndCard />
         );
     }
 
     renderMappedCards() {
         let { pets } = this.state;
 
-        // const cardStyle = {
-        //     height: 500
-        // }
+        const cardStyle = {
+            display: 'flex',
+            flexDirection: 'column'
+        }
 
         return pets.map((pet) => {
             return (
                 //Card div name is already given as card_container
-                <Card key={pet.pet_id} onSwipe={this.onSwipe.bind(this)} data={pet} >
+                <Card key={pet.pet_id} style={cardStyle} data={pet}
+                    onSwipeLeft={this.onSwipeLeft.bind(this)}
+                    onSwipeRight={this.onSwipeRight.bind(this)} >
+
+                    <div className="overlay"></div>
+
                     <div className='card-info-container' >
                         <Carousel className='profile-photo-container' showIndicators dynamicHeight={true} autoPlay={false} showStatus={false} showThumbs={false}>
                             <img src={pet.image} alt='pet' />
@@ -93,7 +111,7 @@ export default class PetCard extends Component {
                             <h6>Phoenix, AZ</h6>
 
                             {/* Google Maps API */}
-                            <img src={googleMap} />
+                            <img src={googleMap} alt='Google Map location of shelter' />
 
                             {/* insert icon */}
                             <h6>ADDRESS</h6>
@@ -113,13 +131,13 @@ export default class PetCard extends Component {
     //render card(s)
     render() {
 
-
         return (
             <div className='card-page'>
-                <CardWrapper addEndCard={this.getEndCard.bind(this)}>
+                <CardWrapper style={{ position: 'relative' }}
+                    addEndCard={this.getEndCard.bind(this)}>
                     {this.renderMappedCards()}
                 </CardWrapper>
-            </div>
+            </div >
         )
     }
 }
@@ -127,7 +145,7 @@ export default class PetCard extends Component {
 
 //PREVIOUS SAMPLE/DUMMY DATA
 
-{/* <Card className='card'> 
+/* <Card className='card'>
     <div className='profile-photo-container'>
         <Carousel />
     </div>
@@ -152,12 +170,12 @@ export default class PetCard extends Component {
         <h4>Goodest Dog</h4>
         <h6>Phoenix, AZ</h6>
         <img src={googleMap} />
-            icon 
+            icon
         <h6>ADDRESS</h6>
-        icon 
+        icon
         <h6>EMAIL</h6>
-            icon 
+            icon
         <h6>PHONE</h6>
         <button>MESSAGE</button>
     </div>
-</Card> */}
+</Card> */

@@ -14,6 +14,19 @@
     /* height: 500px; */
 }
 
+.overlay {
+    background: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: -400px;
+    right: -100%;
+    bottom: -100%;
+    left: -100%;
+    z-index: 4;
+    width: 1200px;
+    height: 1000px;
+  }
+
+
 .card-info-container {
     /* background: green; --check to see if css is passing for scroll*/
     height: 500px;
@@ -63,6 +76,6 @@
 
 .rescue-info button:hover {background-color: #5ee1e6}
 
-/* .end-card {
+.end-card {
     text-align: center;
-} */
+}

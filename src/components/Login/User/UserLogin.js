@@ -17,7 +17,7 @@ export default class UserLogin extends Component {
         this.loginUser = this.loginUser.bind(this);
     }
 
-    loginUser(id) {
+    loginUser() {
         const { username, password } = this.state;
 
         let existingUser = {
@@ -25,7 +25,7 @@ export default class UserLogin extends Component {
             password
         }
 
-        axios.post(`/api/users`, existingUser).then(response => {
+        axios.post(`/login`, existingUser).then(response => {
             console.log(response.data)
             window.location = `/#/dashboard`;
         })

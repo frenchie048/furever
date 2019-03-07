@@ -4,7 +4,8 @@ const session = require('express-session');
 const massive = require('massive');
 require('dotenv').config();
 
-const controller = require('./controllers/controller');
+const userController = require('./controllers/userController');
+const petController = require('./controllers/petController');
 
 const app = express();
 
@@ -22,19 +23,37 @@ massive(process.env.CONNECTION_STRING).then(db => {
     console.log('Connected to the database')
 })
 
-//endpoints
+//USER endpoints
 
 //registering new user
-app.post('/api/users', controller.createUser);
+app.post('/api/users', userController.createUser);
 
 //logging in existing user
-app.post('/api/users/username', controller.loginUser);
+app.post('/login', userController.loginUser);
+
+function ensureLoggedIn(req, res, next) {
+    if (req.session.user) {
+        next();
+    } else {
+        res.status(403).json({ message: 'You are not authorized' });
+    }
+}
+
+app.get('/secure-data', ensureLoggedIn, (req, res) => {
+    res.status(200);
+});
 
 //get all users
-app.get('/api/users', controller.getUsers);
+app.get('/api/users', userController.getUsers);
 
-//GET ALL PETS
-app.get('/api/pets', controller.getPets);
+//logout user
+app.post('/logout', userController.logoutUser);
+
+
+//PET endpoints
+
+//get all pets
+app.get('/api/pets', petController.getPets);
 
 //GET MATCHED PETS
 
