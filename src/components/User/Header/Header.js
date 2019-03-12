@@ -10,10 +10,6 @@ import axios from 'axios';
 
 class Header extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         axios.get('/api/user-data').then(response => {
             console.log('RESPONSE', response.data.user)

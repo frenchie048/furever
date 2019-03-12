@@ -25,9 +25,13 @@ massive(process.env.CONNECTION_STRING).then(db => {
 
 //USER endpoints
 
+//SESSION ENDPOINTS
 app.get('/api/user-data', (req, res) => {
+    console.log('user-data-session', req.session.user);
     res.json({ user: req.session.user });
 });
+
+app.post('/api/user-session', userController.updateUserSession);
 
 //registering new user
 app.post('/api/users', userController.createUser);

@@ -91,9 +91,11 @@ class ViewEdit extends Component {
         const { first_name, last_name, email } = this.state;
         console.log('HEY LOOK AT DIS', first_name, last_name, email)
         axios.put(`/api/users/${username}`, { first_name, last_name, email }).then(response => {
-            this.props.setUser(response.data[0]);
             console.log(response.data[0]);
-            this.onCancel();
+            this.props.setUser(response.data[0]);
+            axios.post('/api/user-session', { new_user: response.data[0] }).then(response => {
+                this.onCancel();
+            })
         })
     }
 

@@ -53,10 +53,6 @@ module.exports = {
         res.status(200).end()
     },
 
-
-
-
-
     //edit user
     editUser: (req, res) => {
         const db = req.app.get('db');
@@ -67,6 +63,14 @@ module.exports = {
             res.status(200).send(response);
         }).catch(err => console.log(err.detail))
     },
+
+
+
+
+
+
+
+
     //delete user
     deleteUser: (req, res) => {
         const db = req.app.get('db');
@@ -103,5 +107,12 @@ module.exports = {
         db.get_one_user(username).then(user => {
             res.status(200).send(user)
         }).catch(err => console.log(err))
+    },
+    updateUserSession: (req, res) => {
+        const { new_user } = req.body;
+        console.log('beforeeeee', req.session.user);
+        req.session.user = new_user;
+        console.log('aftaaaaa', req.session.user);
+        // console.log(new_user);
     }
 }

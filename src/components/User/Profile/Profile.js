@@ -63,8 +63,8 @@ class Profile extends Component {
 
     render() {
         // const { email, first_name, last_name, picture, username } = this.props.user;
-        console.log(this.props.user);
-        console.log(this.state);
+        // console.log(this.props.user);
+        // console.log(this.state);
         return (
             <div>
                 <header>
