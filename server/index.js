@@ -14,8 +14,8 @@ app.use(express.static(`${__dirname}/../build`));
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: false,
 }))
 
 massive(process.env.CONNECTION_STRING).then(db => {
@@ -24,6 +24,10 @@ massive(process.env.CONNECTION_STRING).then(db => {
 })
 
 //USER endpoints
+
+app.get('/api/user-data', (req, res) => {
+    res.json({ user: req.session.user });
+});
 
 //registering new user
 app.post('/api/users', userController.createUser);
@@ -46,8 +50,20 @@ app.get('/secure-data', ensureLoggedIn, (req, res) => {
 //get all users
 app.get('/api/users', userController.getUsers);
 
+//get one user
+app.get('/api/users/:username', userController.getOneUser);
+
 //logout user
 app.post('/logout', userController.logoutUser);
+
+//edit user
+
+app.put('/api/users/:username', userController.editUser);
+// delete user
+app.delete('api/users/:username', userController.deleteUser);
+
+//GET MATCHED PETS
+app.get('/api/matches', userController.getUserMatches);
 
 
 //PET endpoints
@@ -55,7 +71,7 @@ app.post('/logout', userController.logoutUser);
 //get all pets
 app.get('/api/pets', petController.getPets);
 
-//GET MATCHED PETS
+
 
 const PORT = 4000;
 app.listen(PORT, () => console.log(`I'm listening on port ${PORT}`));

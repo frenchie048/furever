@@ -1,0 +1,78 @@
+.profile-links {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.profile-links button {
+    background-color: transparent;
+    border: none;
+}
+
+.profile-links h2 {
+    /* color: #64C4C7; */
+    font-family: 'Fjalla One', sans-serif;
+    color: #64C4C7;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.profile-links button :hover {
+    color: #5ee1e6;
+    cursor: pointer;
+}
+
+div.inactive {
+    display: none;
+    overflow: hidden;
+    /* max-height: 0; */
+    /* transition: max-height 0.5s ease-out; */
+}
+
+div.active {
+    /* max-height: 700px; */
+    /* transition: max-height 0.5s ease-out; */
+    background-color: rgba(173, 169, 169, 0.095);
+}
+
+.alert, .alert button {
+    font-family: 'Fjalla One', sans-serif; 
+}
+
+.profile-information {
+    padding: 10px;
+}
+
+.profile-information img {
+    height: 150px;
+    width: 150px;
+    border: none;
+    border-radius: 50%;
+    padding-bottom: 10px;
+}
+
+.profile-information h1 {
+    font-size: 20px;
+}
+
+.profile-information h2 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 18px;
+    color: black;
+}
+
+.active button {
+    background-color :#64C4C7;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 700;
+    width: 60%;
+    max-width: 100px;
+    padding: .4rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 4px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.active button:hover {background-color: #5ee1e6}

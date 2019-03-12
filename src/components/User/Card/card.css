@@ -7,31 +7,49 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #F98A7C;
+    color: #605856;
     max-width: 450px;
     /* max-height: 100%; */
     position: relative;
     /* height: 500px; */
 }
 
-.overlay {
-    background: rgba(0, 0, 0, 0);
-    position: absolute;
-    top: -400px;
-    right: -100%;
-    bottom: -100%;
-    left: -100%;
-    z-index: 4;
-    width: 1200px;
-    height: 1000px;
-  }
+    .card_container::-webkit-scrollbar {
+        width: 7.75px; 
+        background-color: transparent;
+    }
+
+    .card_container::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #605856;
+        border: 1px solid #605856;
+    }
+
+    .card_container::-webkit-scrollbar-track {
+        /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1); */
+        background-color: #F5F5F5;
+        background: #605856;
+        border: 2.75px solid transparent;
+        border-radius: 10px;
+        background-clip: content-box;
+    }
+
+    .card_container::-webkit-scrollbar-button {
+        display: block;
+        height: 20px;
+        /* background: blue; */
+    }
+
+    ::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
 
 
 .card-info-container {
     /* background: green; --check to see if css is passing for scroll*/
-    height: 500px;
-    overflow: scroll;
-    overflow-x: hidden;
+    /* height: 500px; */
+    /* overflow: scroll;
+    overflow-x: hidden; */
 }
 
 .profile-photo-container {
@@ -40,24 +58,92 @@
     border-radius: 8px;
     width: 80vw;
     max-width: 315px;
-    height: 60vh;
+    height: 55vh;
     overflow: hidden;
+    position: relative;
 } 
 
-.profile-photo-container > img {
-    border-radius: 8px;
+.profile-photo-container img {
+    /* border-radius: 8px;
     width: 80vw;
     max-width: 325px;
-    height: 60vh;
+    position: relative;
+    top: -28px; */
 }
 
-.card span {
-    content: "\2022";
+.basic-pet-info, .more-pet-info {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Fjalla One', sans-serif;
 }
+
+.basic-pet-info {
+    margin: 0 20px 12px;
+    font-size: 1.4em;
+}
+
+.more-pet-info {
+    margin: 0 35px 18px;
+    font-size: 1.25em;
+}
+
+.about-pet-list h1, .pet-bio h1, .rescue-info h1 {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.about-pet-list ul, .pet-bio p  {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    justify-content: flex-start;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 1.1em;
+}
+
+.about-pet-list li {
+    text-align: left; 
+    padding: 5px;
+    /* text-transform: uppercase */
+}
+
+.about-pet-list, .pet-bio {
+    margin: 5px 20px 12px;
+}
+
+.pet-bio p {
+    line-height: 1.25em;
+    margin-bottom: 28px;
+}
+
+.rescue-info h1 {
+    font-size: 1.4em;
+}
+
+.rescue-info h2 {
+    font-family: 'Fjalla One', sans-serif;
+    margin: 12px 35px;
+    font-size: 1.1em;
+}
+
+.rescue-info h4 {
+    font-family: 'Fjalla One', sans-serif;
+    margin: 12px 35px;
+    font-size: 1em;
+}
+
+/* COLORS
+#2F2F2F dark gray
+#605856 lighter gray
+*/
+
 
 /* GOOGLE MAP */
 .rescue-info > img {
     max-width: 100%;
+    
 }
 
 .rescue-info button {

@@ -6,20 +6,28 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: calc(10px + 2vmin);
+    /* font-size: calc(10px + 2vmin); */
     color: #F5E2DB;
   }
 
   .user-menu {
-    padding-left: 20px;
+    padding-left: 18px;
+  }
+
+  .profile-image-container {
+    height:50px;
+    max-width:150px;
+    text-align: center;
   }
 
   .user-menu img {
-    min-height: 60px;
-    max-height: 65px;
-    min-width: 60px;
-    max-width: 65px;
+    /* min-height: 60px; */
+    height: 62px;
+    /* min-width: 60px; */
+    width: 62px;
     border-radius: 50%;
+    border: .25px solid #2F2F2F;
+    display: inline-block;
   }
 
   .main-menu img {
@@ -36,9 +44,6 @@
   }
 
   .matches-menu img {
-    min-height: 40px;
-    max-height: 45px;
-    min-width: 40px;
-    max-width: 45px;
-    /* fill: whitesmoke; */
+    height: 40px;
+    width: 35px;
   }

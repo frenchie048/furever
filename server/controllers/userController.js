@@ -3,7 +3,6 @@ const saltRounds = 12;
 
 module.exports = {
     //registering new user
-    //added bcrypt
     createUser: (req, res) => {
         const db = req.app.get('db');
         const { email, first_name, last_name, picture, username, password } = req.body;
@@ -33,7 +32,7 @@ module.exports = {
             if (user.length) {
                 bcrypt.compare(password, user[0].password).then(passwordMatch => {
                     if (passwordMatch) {
-                        req.session.user = { username: user[0].username }
+                        req.session.user = { email: user[0].email, first_name: user[0].first_name, last_name: user[0].last_name, username: user[0].username, picture: user[0].picture }
                         res.status(200).send(req.session.user)
                     } else {
                         res.status(401).send({ message: 'Invalid password' })
@@ -53,11 +52,56 @@ module.exports = {
         req.session.destroy()
         res.status(200).end()
     },
+
+
+
+
+
+    //edit user
+    editUser: (req, res) => {
+        const db = req.app.get('db');
+        const { username } = req.params;
+        const { first_name, last_name, email } = req.body;
+
+        db.edit_user([username, first_name, last_name, email]).then(response => {
+            res.status(200).send(response);
+        }).catch(err => console.log(err.detail))
+    },
+    //delete user
+    deleteUser: (req, res) => {
+        const db = req.app.get('db');
+        const { username } = req.params;
+
+        db.delete_user(username).then(user => {
+            res.status(200).send(`Account for ${username} deleted`)
+        }).catch(err => console.log(err))
+    },
+    getUserMatches: (req, res) => {
+        const db = req.app.get('db');
+
+        db.get_users_matches().then(matches => {
+            res.status(200).send(matches)
+        }).catch(err => console.log(err))
+    },
+
+
+
+
+
+
     getUsers: (req, res) => {
         const db = req.app.get('db');
 
         db.get_users().then(users => {
             res.status(200).send(users)
+        }).catch(err => console.log(err))
+    },
+    getOneUser: (req, res) => {
+        const db = req.app.get('db');
+        const { username } = req.params;
+
+        db.get_one_user(username).then(user => {
+            res.status(200).send(user)
         }).catch(err => console.log(err))
     }
 }

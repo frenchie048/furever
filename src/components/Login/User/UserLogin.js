@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setUser } from '../../../ducks/reducer';
 import backgroundVid2 from '../../../images/Cat-9328.mp4';
 import logo from '../../../images/logo_transparent_cropped.png';
 import axios from 'axios';
 import '../login.css';
 
-export default class UserLogin extends Component {
+class UserLogin extends Component {
     constructor(props) {
         super(props);
 
@@ -26,6 +28,8 @@ export default class UserLogin extends Component {
         }
 
         axios.post(`/login`, existingUser).then(response => {
+            // this.props.getUser(existingUser)
+            this.props.setUser(response.data)
             console.log(response.data)
             window.location = `/#/dashboard`;
         })
@@ -52,10 +56,10 @@ export default class UserLogin extends Component {
                     <br></br>
 
                     <div className='login-input'>
-                        {/* <h5>Username:</h5> */}
+
                         <input value={username} placeholder='Username' onChange={(e) => this.setState({ username: e.target.value })} />
                         <br />
-                        {/* <h5>Password:</h5> */}
+
                         <input value={password} type='password' placeholder='Password' onChange={(e) => this.setState({ password: e.target.value })} />
                         <br />
                         <button onClick={this.loginUser}>
@@ -71,3 +75,5 @@ export default class UserLogin extends Component {
         )
     }
 }
+
+export default connect(null, { setUser })(UserLogin);

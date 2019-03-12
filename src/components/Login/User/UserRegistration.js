@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setUser } from '../../../ducks/reducer';
 import backgroundVid3 from '../../../images/Dog-20608.mp4';
 import logo from '../../../images/logo_transparent_cropped.png';
 import axios from 'axios';
 import '../registration.css';
 
-export default class UserRegistration extends Component {
+class UserRegistration extends Component {
     constructor(props) {
         super(props);
 
@@ -33,9 +35,10 @@ export default class UserRegistration extends Component {
         }
 
         axios.post('/api/users', newUser).then(response => {
+            // this.props.updateUser(newUser)
+            this.props.setUser(response.data)
             console.log(response.data)
             window.location = `/#/dashboard`;
-            // this.props.getUser(response.data)
         })
     }
 
@@ -62,24 +65,20 @@ export default class UserRegistration extends Component {
                     <h1>User Registration</h1>
                     <br></br>
                     <div className='registration-input'>
-                        {/* <h5>Email Address:</h5> */}
+
                         <input value={email} type='email' placeholder='Email Address' onChange={(e) => this.setState({ email: e.target.value })} />
 
-                        {/* <h5>First Name:</h5> */}
                         <input value={first_name} placeholder='First Name' onChange={(e) => this.setState({ first_name: e.target.value })} />
 
-                        {/* <h5>Last Name:</h5> */}
                         <input value={last_name} placeholder='Last Name' onChange={(e) => this.setState({ last_name: e.target.value })} />
 
-                        {/* <h5>Profile Photo:</h5> */}
                         <input value={picture} placeholder='Profile Image URL' onChange={(e) => this.setState({ picture: e.target.value })} />
 
-                        {/* <h5>Username:</h5> */}
                         <input value={username} placeholder='Username' onChange={(e) => this.setState({ username: e.target.value })} />
 
-                        {/* <h5>Password:</h5> */}
                         <input value={password} type='password' placeholder='Password' onChange={(e) => this.setState({ password: e.target.value })} />
                         <br />
+
                         <button onClick={this.registerNewUser}>
                             Register
                         </button>
@@ -93,3 +92,5 @@ export default class UserRegistration extends Component {
         )
     }
 }
+
+export default connect(null, { setUser })(UserRegistration);

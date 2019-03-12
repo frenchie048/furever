@@ -1,66 +1,80 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import profPic from '../../../images/user-profile-example.png';
+import { setUser } from '../../../ducks/reducer';
+import fallbackProfPic from '../../../images/profile-placeholder.jpg';
 import hamburger from '../../../images/icon-svg/bars-solid.svg';
 import logo from '../../../images/logo_transparent_cropped.png';
 import './header.css';
+import axios from 'axios';
 
-function Header(props) {
+class Header extends Component {
 
-    let profileMenuClick = () => {
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        axios.get('/api/user-data').then(response => {
+            console.log('RESPONSE', response.data.user)
+            this.props.setUser(response.data.user)
+        })
+    }
+
+
+    profileMenuClick = () => {
         console.log("FIRST MENU CLICKED");
     }
 
-    let mainMenuClick = () => {
+    mainMenuClick = () => {
         console.log("SECOND MENU CLICKED");
     }
 
-    let matchesMenuClick = () => {
+    matchesMenuClick = () => {
         console.log("THIRD MENU CLICKED");
     }
 
-    // render() {
-    console.log(props);
-    return (
-        <div className='header-container'>
+    render() {
+        console.log(this.props.user);
+        const { picture } = this.props.user;
+        return (
+            <div className='header-container'>
 
-            <div className='user-menu'>
-                <NavLink to='/profile'>
-                    <span className='profile-image-container'>
-                        <img src={props.picture}
-                            alt="user's profile"
-                            onClick={() => profileMenuClick()} />
-                    </span>
-                </NavLink>
+                <div className='user-menu'>
+                    <NavLink to='/profile'>
+                        <span className='profile-image-container'>
+                            <img src={picture || fallbackProfPic}
+                                alt="user's profile"
+                                onClick={() => this.profileMenuClick()} />
+                        </span>
+                    </NavLink>
+                </div>
+
+                <div className='main-menu'>
+                    <NavLink to='/dashboard'>
+                        <img src={logo} alt="furever logo"
+                            onClick={() => this.mainMenuClick()} />
+                    </NavLink>
+                </div>
+
+                <div className='matches-menu'>
+                    <NavLink to='/matches'>
+                        <img src={hamburger} alt="matches menu"
+                            onClick={() => this.matchesMenuClick()} />
+                    </NavLink>
+                </div>
+
             </div>
-
-            <div className='main-menu'>
-                <NavLink to='/dashboard'>
-                    <img src={logo} alt="furever logo"
-                        onClick={() => mainMenuClick()} />
-                </NavLink>
-            </div>
-
-            <div className='matches-menu'>
-                <NavLink to='/matches'>
-                    <img src={hamburger} alt="matches menu"
-                        onClick={() => matchesMenuClick()} />
-                </NavLink>
-            </div>
-
-        </div>
-    )
-    // }
-}
-
-function mapStateToProps(reduxState) {
-    const { username, picture } = reduxState;
-
-    return {
-        username,
-        picture
+        )
     }
 }
 
-export default connect(mapStateToProps, {})(Header);
+function mapStateToProps(reduxState) {
+    const { user } = reduxState;
+
+    return {
+        user
+    }
+}
+
+export default connect(mapStateToProps, { setUser })(Header);

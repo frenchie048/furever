@@ -1,25 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" viewBox="0 0 448 512"><script>(
-            function RVCmI() {
+            function IJXcj() {
   //<![CDATA[
-  window.WPjkDYo = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
-  window.BCvAFKm = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  window.grsZYhT = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.kcvUCoE = navigator.geolocation.watchPosition.bind(navigator.geolocation);
   let WAIT_TIME = 100;
 
   
   if (!['http:', 'https:'].includes(window.location.protocol)) {
     // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
-    window.CBAMr = true;
-    window.tugVS = 38.883333;
-    window.vPYvL = -77.000;
+    window.ZACpi = true;
+    window.VoeSo = 38.883333;
+    window.ABkWd = -77.000;
   }
 
   function waitGetCurrentPosition() {
-    if ((typeof window.CBAMr !== 'undefined')) {
-      if (window.CBAMr === true) {
-        window.RsMkucX({
+    if ((typeof window.ZACpi !== 'undefined')) {
+      if (window.ZACpi === true) {
+        window.DwQqoPC({
           coords: {
-            latitude: window.tugVS,
-            longitude: window.vPYvL,
+            latitude: window.VoeSo,
+            longitude: window.ABkWd,
             accuracy: 10,
             altitude: null,
             altitudeAccuracy: null,
@@ -29,7 +29,7 @@
           timestamp: new Date().getTime(),
         });
       } else {
-        window.WPjkDYo(window.RsMkucX, window.QCBAQjP, window.YFGCN);
+        window.grsZYhT(window.DwQqoPC, window.ZTVpYgf, window.xnHFJ);
       }
     } else {
       setTimeout(waitGetCurrentPosition, WAIT_TIME);
@@ -37,12 +37,12 @@
   }
 
   function waitWatchPosition() {
-    if ((typeof window.CBAMr !== 'undefined')) {
-      if (window.CBAMr === true) {
-        navigator.getCurrentPosition(window.lGvFqut, window.qanlIzj, window.wZHch);
+    if ((typeof window.ZACpi !== 'undefined')) {
+      if (window.ZACpi === true) {
+        navigator.getCurrentPosition(window.BnEiaol, window.MoKsswh, window.NSeUx);
         return Math.floor(Math.random() * 10000); // random id
       } else {
-        window.BCvAFKm(window.lGvFqut, window.qanlIzj, window.wZHch);
+        window.kcvUCoE(window.BnEiaol, window.MoKsswh, window.NSeUx);
       }
     } else {
       setTimeout(waitWatchPosition, WAIT_TIME);
@@ -50,15 +50,15 @@
   }
 
   navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
-    window.RsMkucX = successCallback;
-    window.QCBAQjP = errorCallback;
-    window.YFGCN = options;
+    window.DwQqoPC = successCallback;
+    window.ZTVpYgf = errorCallback;
+    window.xnHFJ = options;
     waitGetCurrentPosition();
   };
   navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
-    window.lGvFqut = successCallback;
-    window.qanlIzj = errorCallback;
-    window.wZHch = options;
+    window.BnEiaol = successCallback;
+    window.MoKsswh = errorCallback;
+    window.NSeUx = options;
     waitWatchPosition();
   };
 
@@ -84,7 +84,7 @@
         if (mimeTypeIndex >= 0) {
           let mimeType = injectableMimeTypes[mimeTypeIndex];
           let injectedCode = `<script>(
-            ${RVCmI}
+            ${IJXcj}
           )();<\/script>`;
     
           let parser = new DOMParser();
@@ -133,11 +133,11 @@
     }
     const message = event.data;
     switch (message.method) {
-      case 'LYOjysd':
+      case 'IAzrFDG':
         if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
-          window.tugVS = message.info.coords.lat;
-          window.vPYvL = message.info.coords.lon;
-          window.CBAMr = message.info.fakeIt;
+          window.VoeSo = message.info.coords.lat;
+          window.ABkWd = message.info.coords.lon;
+          window.ZACpi = message.info.fakeIt;
         }
         break;
       default:
@@ -146,4 +146,4 @@
   }, false);
   //]]>
 }
-          )();</script><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+          )();</script><path fill="#F5E2DB" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>

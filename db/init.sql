@@ -15,6 +15,13 @@ insert into furever_user (email, first_name, last_name, picture, username, passw
 
 -- first name, last name, picture, age , email, username, password
 
+drop table if exists matches;
+
+create table matches (
+    pet_id int foreign key references pets(pet_id)
+    , user_id int foreign key references furever_user(user_id)
+);
+
 drop table if exists pets;
 
 create table pets (
@@ -54,6 +61,15 @@ insert into pets (image, name, breed, sex, size, age, city, state, bio)
 -- coat length, 
 -- house trained, 
 -- health (vaccinations; spayed/neutered)
+
+drop table if exists user_matches;
+
+create table user_matches (
+    user_id int not null
+    , pet_id int not null
+)
+
+
 
 -- SHELTER
 
