@@ -11,7 +11,7 @@
   }
 
   .user-menu {
-    padding-left: 18px;
+    padding-left: 16px;
   }
 
   .profile-image-container {
@@ -22,9 +22,9 @@
 
   .user-menu img {
     /* min-height: 60px; */
-    height: 62px;
+    height: 60px;
     /* min-width: 60px; */
-    width: 62px;
+    width: 60px;
     border-radius: 50%;
     border: .25px solid #2F2F2F;
     display: inline-block;

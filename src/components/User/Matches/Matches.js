@@ -20,7 +20,8 @@ class Matches extends Component {
     }
 
     getMatches = () => {
-        axios.get('/api/matches').then(response => {
+        const { username } = this.props.user
+        axios.get(`/api/matches/${username}`).then(response => {
             this.setState({
                 matches: response.data
             })
@@ -33,12 +34,28 @@ class Matches extends Component {
 
         return matches.map((match) => {
             return (
-                <div>
-                    <img src={fallbackProfPic} />
-                    <h1>{match.pet.name || 'NAME'}</h1>
-                    <h1>{match.pet.city || 'CITY'}, {match.pet.state || 'STATE'}</h1>
-                    {/* italics - whole div is button toggle expanded/not */}
-                    <h5>Click to expand</h5>
+                <div key={match.match_id} className='match-container'>
+
+                    <img src={match.image || fallbackProfPic} />
+
+                    <div className='match-info'>
+
+                        <div className='info-section' style={{ fontWeight: 700 }}>
+                            <h1 >{match.name || 'NAME'}</h1>
+                            <h1>{match.city || 'CITY'}, {match.state || 'STATE'}</h1>
+                        </div>
+
+                        <div className='info-section'>
+                            <h1>{match.breed}</h1>
+                            {/* <span>&#9679;</span> */}
+                            <h1>{match.age}</h1>
+                            {/* <span>&#9679;</span> */}
+                            <h1>{match.sex}</h1>
+                        </div>
+
+                        {/* italics - whole div is button toggle expanded/not */}
+                        <h5 className='info-section' style={{ fontStyle: 'italic' }}>Click to expand</h5>
+                    </div>
                 </div>
             )
         })
@@ -50,8 +67,16 @@ class Matches extends Component {
         return (
             <div>
                 <Header />
-                <h1>MATCHES</h1>
-                {this.renderMappedMatches()}
+                {this.state.matches ?
+                    <div className='matches-header'>
+                        <h1 >MATCHES</h1>
+                        {this.renderMappedMatches()}
+                    </div>
+                    :
+                    <div>
+                        <h1>You don't currently have any matches! Please begin swiping to see saved pets here.</h1>
+                    </div>
+                }
             </div>
         )
     }

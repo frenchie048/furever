@@ -61,16 +61,27 @@ app.get('/api/users/:username', userController.getOneUser);
 app.post('/logout', userController.logoutUser);
 
 //edit user
-
 app.put('/api/users/:username', userController.editUser);
-// delete user
-app.delete('api/users/:username', userController.deleteUser);
 
-//GET MATCHED PETS
-app.get('/api/matches', userController.getUserMatches);
+// delete user
+app.delete('/api/users/:username', userController.deleteUser);
 
 
 //PET endpoints
+
+//GET MATCHED PETS
+app.get('/api/matches/:username', userController.getUserMatches);
+
+//add a pet to matches
+app.post('/api/matches/:username', userController.addMatch);
+
+//GET REJECTED PETS
+app.get('/api/rejects/:username', userController.getUserRejects);
+
+//add a pet to rejects
+app.post('/api/rejects/:username', userController.addReject);
+
+
 
 //get all pets
 app.get('/api/pets', petController.getPets);

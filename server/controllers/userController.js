@@ -32,7 +32,7 @@ module.exports = {
             if (user.length) {
                 bcrypt.compare(password, user[0].password).then(passwordMatch => {
                     if (passwordMatch) {
-                        req.session.user = { email: user[0].email, first_name: user[0].first_name, last_name: user[0].last_name, username: user[0].username, picture: user[0].picture }
+                        req.session.user = { user_id: user[0].user_id, email: user[0].email, first_name: user[0].first_name, last_name: user[0].last_name, username: user[0].username, picture: user[0].picture }
                         res.status(200).send(req.session.user)
                     } else {
                         res.status(401).send({ message: 'Invalid password' })
@@ -64,13 +64,6 @@ module.exports = {
         }).catch(err => console.log(err.detail))
     },
 
-
-
-
-
-
-
-
     //delete user
     deleteUser: (req, res) => {
         const db = req.app.get('db');
@@ -80,16 +73,50 @@ module.exports = {
             res.status(200).send(`Account for ${username} deleted`)
         }).catch(err => console.log(err))
     },
+
+    //get a user's matches
     getUserMatches: (req, res) => {
         const db = req.app.get('db');
+        const { username } = req.params;
 
-        db.get_users_matches().then(matches => {
+        db.get_users_matches(username).then(matches => {
             res.status(200).send(matches)
+        }).catch(err => console.log(err))
+    },
+
+    //add a pet to match table
+    addMatch: (req, res) => {
+        const db = req.app.get('db');
+        const { username } = req.params;
+        const { pet_id, user_id } = req.body;
+
+        db.add_match([username, pet_id, user_id]).then(match => {
+            res.status(200).send(match)
         }).catch(err => console.log(err))
     },
 
 
 
+    //get a user's rejects
+    getUserRejects: (req, res) => {
+        const db = req.app.get('db');
+        const { username } = req.params;
+
+        db.get_users_rejects(username).then(rejects => {
+            res.status(200).send(rejects)
+        }).catch(err => console.log(err))
+    },
+
+    //add a pet to reject table
+    addReject: (req, res) => {
+        const db = req.app.get('db');
+        const { username } = req.params;
+        const { pet_id, user_id } = req.body;
+
+        db.add_reject([username, pet_id, user_id]).then(reject => {
+            res.status(200).send(reject)
+        }).catch(err => console.log(err))
+    },
 
 
 
@@ -110,9 +137,10 @@ module.exports = {
     },
     updateUserSession: (req, res) => {
         const { new_user } = req.body;
-        console.log('beforeeeee', req.session.user);
+        // console.log('beforeeeee', req.session.user);
         req.session.user = new_user;
-        console.log('aftaaaaa', req.session.user);
+        // console.log('aftaaaaa', req.session.user);
+        res.status(200).send(req.session.user)
         // console.log(new_user);
     }
 }

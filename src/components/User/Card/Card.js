@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import { setUser } from '../../../ducks/reducer';
 import { Carousel } from 'react-responsive-carousel';
 import { Card, CardWrapper } from 'react-swipeable-cards';
 import googleMap from '../../../images/map-example.PNG';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './card.css';
+// import { reject } from 'rejects';
 
 //create custom end card
 class MyEndCard extends Component {
@@ -18,7 +20,7 @@ class MyEndCard extends Component {
     }
 }
 
-export default class PetCard extends Component {
+class PetCard extends Component {
     constructor(props) {
         super(props);
 
@@ -40,22 +42,56 @@ export default class PetCard extends Component {
         })
     }
 
+    // getPets() {
+    //     let {matches} = this.state.matches;
+    //     let {rejects} = this.state.rejects;
+
+    //     axios.get('/api/pets').then(response => {
+
+    //         this.data = response.data;
+    //         this.data.forEach((pet) => {
+    //             if (pet.pet.id !== match.pet_id && pet.pet.id !== reject.pet_id) {
+    //                 var unswipedPets = this.state.pets.concat(pet);
+    //                 this.setState({ pets: unswipedPets })
+    //             }
+    //         });
+
+    //     })
+    // }
+
+
+
     //ON SWIPE 
 
     // onSwipe(pets) {
     //     console.log(pets.name + " was swiped.");
     // }
 
+    //need to make right(yes) action
+    onSwipeRight(pets) {
+        let { pet_id } = pets;
+        let { username, user_id } = this.props.user;
+
+        axios.post(`/api/matches/${username}`, { pet_id, user_id }).then(response => {
+            console.log(response.data)
+        })
+
+        console.log('pet id ' + pet_id + "user id " + user_id)
+        console.log(pets.name + " was swiped right.");
+    }
+
     //need to make left(no) action
     onSwipeLeft(pets) {
+        let { pet_id } = pets;
+        let { username, user_id } = this.props.user;
+
+        axios.post(`/api/rejects/${username}`, { pet_id, user_id }).then(response => {
+            console.log(response.data)
+        })
 
         console.log(pets.name + " was swiped left.");
     }
 
-    //need to make right(yes) action
-    onSwipeRight(pets) {
-        console.log(pets.name + " was swiped right.");
-    }
 
 
     //pass end card to the card wrapper
@@ -145,7 +181,7 @@ export default class PetCard extends Component {
 
     //render card(s)
     render() {
-
+        console.log(this.props.user);
         return (
             <div className='card-page'>
                 <CardWrapper style={{ position: 'relative' }}
@@ -156,6 +192,16 @@ export default class PetCard extends Component {
         )
     }
 }
+
+function mapStateToProps(reduxState) {
+    const { user } = reduxState;
+
+    return {
+        user
+    }
+}
+
+export default connect(mapStateToProps, { setUser })(PetCard);
 
 
 //PREVIOUS SAMPLE/DUMMY DATA

@@ -1,3 +1,4 @@
+-- FUREVER_USER TABLE
 drop table if exists furever_user;
 
 create table furever_user (
@@ -13,15 +14,29 @@ create table furever_user (
 insert into furever_user (email, first_name, last_name, picture, username, password)
     values ('brittany@email.com', 'Brittany', 'French', 'https://scontent-sjc3-1.xx.fbcdn.net/v/t1.0-9/37027439_10212059341461706_3830127688543109120_n.jpg?_nc_cat=109&_nc_ht=scontent-sjc3-1.xx&oh=e7ab390a11e77797b03fa9245f060f14&oe=5D1A823C','frenchie', 'sherryNiles');
 
--- first name, last name, picture, age , email, username, password
+-- first name, last name, picture, email, username, password
 
-drop table if exists matches;
+--USER_MATCHES
 
-create table matches (
-    pet_id int foreign key references pets(pet_id)
+drop table if exists user_matches;
+
+create table user_matches (
+    match_id int serial primary key
+    , pet_id int foreign key references pets(pet_id)
     , user_id int foreign key references furever_user(user_id)
 );
 
+--USER REJECTS
+
+drop table if exists user_rejects;
+
+create table user_rejects (
+    reject_id int serial primary key
+    , pet_id int foreign key references pets(pet_id)
+    , user_id int foreign key references furever_user(user_id)
+);
+
+-- PETS TABLE
 drop table if exists pets;
 
 create table pets (
@@ -36,7 +51,6 @@ create table pets (
     , city text not null
     , state varchar(2) not null
     , bio text not null
-    , match_status boolean 
 );
 
 insert into pets (image, name, breed, sex, size, age, city, state, bio)
@@ -54,21 +68,11 @@ insert into pets (image, name, breed, sex, size, age, city, state, bio)
 -- city,
 -- state,
 -- biography (text),
--- match_status (NEED TO ADD)
 
 -- optional info: 
--- IMAGES (up to 4 more), 
 -- coat length, 
 -- house trained, 
 -- health (vaccinations; spayed/neutered)
-
-drop table if exists user_matches;
-
-create table user_matches (
-    user_id int not null
-    , pet_id int not null
-)
-
 
 
 -- SHELTER

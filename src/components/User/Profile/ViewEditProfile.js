@@ -24,7 +24,7 @@ class ViewEdit extends Component {
 
     componentDidMount() {
         setTimeout(() => {
-            console.log('LINE 26 MOTHERFUCKER', this.props.user);
+            console.log(this.props.user);
             if (this.state.first_name === '') {
                 this.setState({
                     first_name: this.props.user.first_name,
@@ -38,38 +38,39 @@ class ViewEdit extends Component {
 
     //DELETING 
 
-    // verifyDelete = (username) => {
-    //     console.log(username)
-    //     swal({
-    //         title: 'Are you sure?',
-    //         text: 'This action is irreversible. You will lose any matches made with your account. Are you sure to want to delete?',
-    //         className: 'alert',
-    //         icon: 'warning',
-    //         buttons: true,
-    //         dangerMode: true,
-    //     })
-    //         .then((willDelete) => {
-    //             if (willDelete) {
-    //                 this.deleteUserProfile(username);
-    //                 swal("Your account has been deleted.", {
-    //                     icon: "success",
-    //                     className: 'alert',
-    //                 });
-    //             } else {
-    //                 swal("Your matches are safe!", {
-    //                     className: 'alert'
-    //                 });
-    //             }
-    //         });
-    // }
+    verifyDelete = () => {
+        const { username } = this.props.user
+        console.log(username)
+        swal({
+            title: 'Are you sure?',
+            text: 'This action is irreversible. You will lose any matches made with your account. Are you sure to want to delete?',
+            className: 'alert',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    this.deleteUserProfile(username);
+                    swal("Your account has been deleted.", {
+                        icon: "success",
+                        className: 'alert',
+                    });
+                } else {
+                    swal("Your matches are safe!", {
+                        className: 'alert'
+                    });
+                }
+            });
+    }
 
-    // deleteUserProfile = (username) => {
-    //     axios.delete(`/api/users/${username}`).then(response => {
-    //         this.setState({ user: null });
-    //         window.location = `/`;
-    //         console.log('account deleted')
-    //     }).catch(err => console.log(err));
-    // }
+    deleteUserProfile = (username) => {
+        axios.delete(`/api/users/${username}`).then(response => {
+            this.setState({ user: null });
+            window.location = `/`;
+            console.log('account deleted')
+        }).catch(err => console.log(err));
+    }
 
 
 
