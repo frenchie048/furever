@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const massive = require('massive');
+// const path = require('path');
+const stripe = require('stripe')('sk_test_qu5jGkkgEUNFek9qnT3S7nkN');
 require('dotenv').config();
 
 const userController = require('./controllers/userController');
@@ -23,9 +25,22 @@ massive(process.env.CONNECTION_STRING).then(db => {
     console.log('Connected to the database')
 })
 
-//USER endpoints
+//STRIPE
+app.post('/api/donate', (req, res) => {
+    let stripeToken = req.body.body;
+    console.log('logging stripe token', stripeToken)
+    stripe.charges.create({
+        amount: req.body.amount,
+        currency: 'usd',
+        description: 'Donation',
+        source: stripeToken
+    }).then(response => {
+        res.status(200).send(response)
+    }).catch(err => console.log(err));
+});
 
-//SESSION ENDPOINTS
+
+//Session Endpoints
 app.get('/api/user-data', (req, res) => {
     console.log('user-data-session', req.session.user);
     res.json({ user: req.session.user });
@@ -33,11 +48,15 @@ app.get('/api/user-data', (req, res) => {
 
 app.post('/api/user-session', userController.updateUserSession);
 
-//registering new user
+//USER endpoints
 app.post('/api/users', userController.createUser);
-
-//logging in existing user
 app.post('/login', userController.loginUser);
+app.get('/api/users', userController.getUsers);
+app.get('/api/users/:username', userController.getOneUser);
+app.post('/logout', userController.logoutUser);
+app.put('/api/users/:username', userController.editUser);
+app.delete('/api/users/:username', userController.deleteUser);
+
 
 function ensureLoggedIn(req, res, next) {
     if (req.session.user) {
@@ -51,37 +70,19 @@ app.get('/secure-data', ensureLoggedIn, (req, res) => {
     res.status(200);
 });
 
-//get all users
-app.get('/api/users', userController.getUsers);
 
-//get one user
-app.get('/api/users/:username', userController.getOneUser);
+//User/Pet Endpoints
 
-//logout user
-app.post('/logout', userController.logoutUser);
-
-//edit user
-app.put('/api/users/:username', userController.editUser);
-
-// delete user
-app.delete('/api/users/:username', userController.deleteUser);
-
-
-//PET endpoints
-
-//GET MATCHED PETS
+//matches
 app.get('/api/matches/:username', userController.getUserMatches);
-
-//add a pet to matches
 app.post('/api/matches/:username', userController.addMatch);
 
-//GET REJECTED PETS
+//rejects
 app.get('/api/rejects/:username', userController.getUserRejects);
-
-//add a pet to rejects
 app.post('/api/rejects/:username', userController.addReject);
 
 
+//Pet Endpoints
 
 //get all pets
 app.get('/api/pets', petController.getPets);

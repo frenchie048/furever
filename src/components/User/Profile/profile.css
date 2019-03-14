@@ -61,6 +61,20 @@ div.active {
     color: black;
 }
 
+.donation-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.donation-info h1 {
+    max-width: 575px;
+    font-size: 18;
+    padding: 10;
+    font-weight: 700;
+}
+
 .active button {
     background-color :#64C4C7;
     font-family: 'Open Sans Condensed', sans-serif;
