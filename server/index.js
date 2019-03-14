@@ -92,5 +92,10 @@ app.get('/api/pets', petController.getPets);
 app.post('/rlogin', rescueController.loginRescue);
 app.get('/api/rescues', rescueController.getRescues);
 
+const path = require('path')
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+})
+
 const PORT = 4000;
 app.listen(PORT, () => console.log(`I'm listening on port ${PORT}`));
