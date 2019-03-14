@@ -6,7 +6,7 @@
 - react-dom
 - react-responsive-carousel
 - axios
-- bcrypt for auth (?)
+- bcrypt for auth
 
 # USER
 - Header.js: static header w/ two menus on sides

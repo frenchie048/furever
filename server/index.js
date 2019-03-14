@@ -8,6 +8,7 @@ require('dotenv').config();
 
 const userController = require('./controllers/userController');
 const petController = require('./controllers/petController');
+const rescueController = require('./controllers/rescueController');
 
 const app = express();
 
@@ -87,7 +88,9 @@ app.post('/api/rejects/:username', userController.addReject);
 //get all pets
 app.get('/api/pets', petController.getPets);
 
-
+//Rescue Endpoints
+app.post('/rlogin', rescueController.loginRescue);
+app.get('/api/rescues', rescueController.getRescues);
 
 const PORT = 4000;
 app.listen(PORT, () => console.log(`I'm listening on port ${PORT}`));

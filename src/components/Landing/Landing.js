@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Switch, Route } from 'react-router-dom';
-import UserLogin from '../Login/User/UserLogin';
-import UserRegistration from '../Login/User/UserRegistration';
 import backgroundVid1 from '../../images/Puppy-4740.mp4';
 import logo from '../../images/logo_transparent_cropped.png';
 import './landing.css';
@@ -32,16 +29,12 @@ export default class Landing extends Component {
                     </div>
 
                     <div className='rescue-login'>
-                        {/* <Link> */}
-                        <button>A Rescue or Shelter</button>
-                        {/* </Link> */}
+                        <Link to='/rescuelogin'>
+                            <button>A Rescue or Shelter</button>
+                        </Link>
                     </div>
 
                 </div>
-                <Switch>
-                    <Route path='/userlogin' component={UserLogin} />
-                    <Route path='/userregistration' component={UserRegistration} />
-                </Switch>
             </div>
         )
     }

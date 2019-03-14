@@ -1,6 +1,7 @@
 //INITIAL STATE
 const INITIAL_STATE = {
     user: {},
+    rescue: {},
     email: '',
     first_name: '',
     last_name: '',
@@ -10,18 +11,18 @@ const INITIAL_STATE = {
 }
 
 //action types
-const GET_USER = 'GET_USER';
 const UPDATE_USER = 'UPDATE_USER';
 const SET_USER = 'SET_USER';
+const SET_RESCUE = 'SET_RESCUE';
 
 //reducer function (w/ switch)
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type) {
-        case GET_USER:
-            return { ...state, user: action.payload };
-
         case SET_USER:
             return { ...state, user: action.payload };
+
+        case SET_RESCUE:
+            return { ...state, rescue: action.payload };
 
         case UPDATE_USER:
             return Object.assign({}, state, {
@@ -37,21 +38,20 @@ export default function reducer(state = INITIAL_STATE, action) {
 
 
 //action creators
-export function getUser(username, password) {
-    return {
-        type: GET_USER,
-        payload: {
-            username,
-            password
-        }
-    }
-}
 
 export function setUser(user) {
     console.log(user)
     return {
         type: SET_USER,
         payload: user
+    }
+}
+
+export function setRescue(rescue) {
+    console.log(rescue)
+    return {
+        type: SET_RESCUE,
+        payload: rescue
     }
 }
 

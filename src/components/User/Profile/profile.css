@@ -39,6 +39,10 @@ div.active {
     font-family: 'Fjalla One', sans-serif; 
 }
 
+.preference-icons img {
+    padding: 5px;
+}
+
 .profile-information {
     padding: 10px;
 }
@@ -71,7 +75,7 @@ div.active {
 .donation-info h1 {
     max-width: 575px;
     font-size: 18;
-    padding: 10;
+    padding: 8px;
     font-weight: 700;
 }
 
@@ -89,4 +93,29 @@ div.active {
     cursor: pointer;
 }
 
+.stripe-payment span {
+    background: transparent!important;
+    border: none!important;
+    font-family: 'Open Sans Condensed', sans-serif!important;
+    color: #2f2f2f!important;
+    text-shadow: none!important;
+    font-weight: 700!important;
+    font-size: 1.1rem!important;
+    box-shadow: none!important;
+}
+
+.stripe-payment {
+    width: 60%!important;
+    max-width: 100px!important;
+    padding: .4rem!important;
+    border: none!important;
+    border-radius: 4px!important;
+    margin: 10px!important;
+    cursor: pointer!important;
+    background-color :#64C4C7!important;
+    background-image: none!important;
+}
+
 .active button:hover {background-color: #5ee1e6}
+
+.stripe-payment:hover {background-color: #5ee1e6!important}

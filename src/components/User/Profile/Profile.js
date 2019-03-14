@@ -5,6 +5,12 @@ import StripeCheckout from 'react-stripe-checkout';
 import swal from 'sweetalert';
 // import fallbackProfPic from '../../../images/profile-placeholder.jpg';
 import stripeLogo from '../../../images/logo_blue_transparent.png';
+import dogIcon from '../../../images/icon-svg/icons8-shiba.png';
+import catIcon from '../../../images/icon-svg/icons8-cat.png';
+import bunnyIcon from '../../../images/icon-svg/icons8-bunny.png';
+import horseIcon from '../../../images/icon-svg/icons8-horse.png';
+import fishIcon from '../../../images/icon-svg/icons8-fish.png';
+import birdIcon from '../../../images/icon-svg/icons8-bird.png';
 import ViewEdit from './ViewEditProfile';
 import axios from 'axios';
 import Header from '../Header/Header';
@@ -81,11 +87,6 @@ class Profile extends Component {
                     button: 'Go Back',
                 });
             })
-        // TODO: Send the token information and any other
-        // relevant information to your payment process
-        // server, wait for the response, and update the UI
-        // accordingly. How this is done is up to you. Using
-        // XHR, fetch, or a GraphQL mutation is typical.
     };
 
     render() {
@@ -104,11 +105,22 @@ class Profile extends Component {
                         </h2>
                     </button>
                     <div className={this.state.toggleClassName1 ? 'active' : 'inactive'}>
-                        <h3>Dogs</h3>
-                        <h3>Cats</h3>
-                        <h3>Bunnies</h3>
-                        <h3>Fish</h3>
-                        <h3>Birds</h3>
+                        <div className='preference-icons'>
+                            <section>
+                                <img src={dogIcon} alt='dog-icon' />
+                                <img src={catIcon} alt='cat-icon' />
+                            </section>
+
+                            <section>
+                                <img src={bunnyIcon} alt='bunny-icon' />
+                                <img src={horseIcon} alt='horse-icon' />
+                            </section>
+
+                            <section>
+                                <img src={fishIcon} alt='fish-icon' />
+                                <img src={birdIcon} alt='bird-icon' />
+                            </section>
+                        </div>
                     </div>
 
 
@@ -136,8 +148,9 @@ class Profile extends Component {
                             <h1>
                                 Click below to donate today.
                             </h1>
-                            <button>Donate</button>
+                            {/* <button>Donate</button> */}
                             <StripeCheckout
+                                className='stripe-payment'
                                 amount='2500'
                                 label='Donate'
                                 description='$25 Donation'

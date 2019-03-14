@@ -78,7 +78,7 @@
 }
 
 .basic-pet-info {
-    margin: 0 20px 12px;
+    margin: 0 35px 12px;
     font-size: 1.4em;
 }
 
@@ -160,6 +160,21 @@
     cursor: pointer;
 }
 
+.rescue-details {
+    width: 65%;
+    margin: 0 auto;
+}
+
+.rescue-details img {
+    height: 25px;
+    width: 25px;
+}
+
+.details-section {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
 .rescue-info button:hover {background-color: #5ee1e6}
 
 .end-card {

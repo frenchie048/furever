@@ -11,7 +11,8 @@ class Matches extends Component {
         super(props);
 
         this.state = {
-            matches: []
+            matches: [],
+            expand: false
         }
     }
 
@@ -29,12 +30,20 @@ class Matches extends Component {
         })
     }
 
+    expandMoreInfo = () => {
+        this.setState({
+            expand: !this.state.expand
+        })
+    };
+
     renderMappedMatches() {
         let { matches } = this.state;
 
         return matches.map((match) => {
             return (
-                <div key={match.match_id} className='match-container'>
+                <div key={match.match_id}
+                    className='match-container'
+                    onClick={this.expandMoreInfo}>
 
                     <img src={match.image || fallbackProfPic} />
 
@@ -42,19 +51,41 @@ class Matches extends Component {
 
                         <div className='info-section' style={{ fontWeight: 700 }}>
                             <h1 >{match.name || 'NAME'}</h1>
+                        </div>
+
+                        <div className='info-section' >
                             <h1>{match.city || 'CITY'}, {match.state || 'STATE'}</h1>
                         </div>
 
                         <div className='info-section'>
-                            <h1>{match.breed}</h1>
-                            {/* <span>&#9679;</span> */}
-                            <h1>{match.age}</h1>
-                            {/* <span>&#9679;</span> */}
-                            <h1>{match.sex}</h1>
+                            <h1>{match.breed}, </h1>
+                            <h1>{match.age}, </h1>
+                            <h1>{match.sex}, </h1>
+                            <h1>{match.size}</h1>
+                        </div>
+                        <div className={this.state.expand ? 'info-section' : 'hidden'}>
+                            <h1 style={{ fontWeight: 700 }}>{match.rescue_name}</h1>
                         </div>
 
-                        {/* italics - whole div is button toggle expanded/not */}
-                        <h5 className='info-section' style={{ fontStyle: 'italic' }}>Click to expand</h5>
+                        <div className={this.state.expand ? 'info-section' : 'hidden'}>
+                            <h1>{match.rescue_city}, {match.rescue_state}</h1>
+                        </div>
+
+                        <div className={this.state.expand ? 'info-section' : 'hidden'} style={{ fontStyle: 'italic' }}>
+                            <h1>Contact for details:</h1>
+                        </div>
+
+                        <div className={this.state.expand ? 'info-section' : 'hidden'} style={{ flexDirection: 'column' }}>
+                            <h1 style={{ paddingBottom: 6 }}>{match.rescue_email}</h1>
+                            <h1>{match.rescue_phone_number}</h1>
+
+                        </div>
+
+                        <div className='info-section' style={{ fontStyle: 'italic' }}>
+                            {this.state.expand ? <h5>Click to collapse</h5>
+                                :
+                                <h5>Click to expand</h5>}
+                        </div>
                     </div>
                 </div>
             )

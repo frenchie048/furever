@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setUser } from '../../../ducks/reducer';
-import { Carousel } from 'react-responsive-carousel';
+// import { Carousel } from 'react-responsive-carousel';
 import { Card, CardWrapper } from 'react-swipeable-cards';
 import googleMap from '../../../images/map-example.PNG';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import phoneIcon from '../../../images/icon-svg/phone-solid.svg';
+import mapIcon from '../../../images/icon-svg/map-marker-alt-solid.svg';
+import emailIcon from '../../../images/icon-svg/envelope-solid.svg';
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './card.css';
 // import { reject } from 'rejects';
 
@@ -13,8 +16,9 @@ import './card.css';
 class MyEndCard extends Component {
     render() {
         return (
-            <div className='end-card'>
-                You've finished swiping! Change your preferences to refresh, or try again later!
+            <div className='end-card'
+                style={{ fontFamily: 'Fjalla One, sans-serif', textAlign: 'center' }}>
+                <h1 style={{ paddingTop: '30%', width: '80%', margin: '0 auto', fontSize: 30 }}>You've finished swiping! Change your preferences to refresh, or try again later!</h1>
             </div>
         );
     }
@@ -123,9 +127,9 @@ class PetCard extends Component {
 
                     <div className='card-info-container' style={noSwipe}>
 
-                        <Carousel className='profile-photo-container' showIndicators dynamicHeight={false} autoPlay={false} showStatus={false} showThumbs={false}>
-                            <img src={pet.image} alt='pet' />
-                        </Carousel>
+                        {/* <Carousel className='profile-photo-container' showIndicators dynamicHeight={false} autoPlay={false} showStatus={false} showThumbs={false}> */}
+                        <img src={pet.image} alt='pet' className='profile-photo-container' />
+                        {/* </Carousel> */}
 
                         <div className='basic-pet-info'>
                             <h2>{pet.name}</h2>
@@ -143,11 +147,10 @@ class PetCard extends Component {
                         <div className='about-pet-list'>
                             <h1>ABOUT:</h1>
                             <ul>
-                                <li>Coat Length: Medium</li>
-                                <li>House-Trained: Yes</li>
-                                <li>Health: Vaccinations up to date; Spayed</li>
-                                <li>Good In A Home With: Other Dogs</li>
-                                <li>Prefers A Home Without: Children</li>
+                                <li>Size: {pet.size}</li>
+                                <li>Coat Length: {pet.coat_length}</li>
+                                <li>House-Trained: {pet.housetrained}</li>
+                                <li>Health: Vaccinations up to date</li>
                             </ul>
                         </div>
 
@@ -156,24 +159,31 @@ class PetCard extends Component {
                             <p>{pet.bio}</p>
                         </div>
 
-                        {/* when shelter table created, pass info down! */}
                         <div className='rescue-info'>
-                            <h1>Goodest Dog Rescue</h1>
-                            <h2>Phoenix, AZ</h2>
+                            <h1>{pet.rescue_name}</h1>
+                            <h2>{pet.rescue_city}, {pet.rescue_state}</h2>
 
                             {/* Google Maps API */}
                             <img src={googleMap} alt='Google Map location of shelter' />
+                            <div className='rescue-details'>
 
-                            {/* insert icon */}
-                            <h4>1234 N Maple Dr</h4>
-                            {/* insert icon */}
-                            <h4>goodestdogrescue@email.com</h4>
-                            {/* insert icon */}
-                            <h4>555.555.5555</h4>
-                            <button>MESSAGE</button>
+                                <div className='details-section'>
+                                    <img src={mapIcon} alt="map icon" />
+                                    <h4>1234 N Maple Dr</h4>
+                                </div>
+
+                                <div className='details-section'>
+                                    <img src={emailIcon} alt="email icon" />
+                                    <h4>{pet.rescue_email}</h4>
+                                </div>
+                                <div className='details-section'>
+                                    <img src={phoneIcon} alt="phone icon" />
+                                    <h4 style={{ paddingBottom: 10 }}>{pet.rescue_phone_number}</h4>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </Card>
+                    </div >
+                </Card >
             );
         });
     }
@@ -181,7 +191,7 @@ class PetCard extends Component {
 
     //render card(s)
     render() {
-        console.log(this.props.user);
+        console.log(this.state.pets);
         return (
             <div className='card-page'>
                 <CardWrapper style={{ position: 'relative' }}
