@@ -1,30 +1,30 @@
 module.exports = {
-    // createRescue: (req, res) => {
-    //     const db = req.app.get('db');
-    //     const { email, first_name, last_name, picture, username, password } = req.body;
+    createRescue: (req, res) => {
+        const db = req.app.get('db');
+        const { rescue_name, rescue_username, rescue_password, logo, rescue_email, rescue_phone_number, rescue_city, rescue_state } = req.body;
 
-    //     bcrypt.hash(password, saltRounds).then(hashedPassword => {
-    //         db.create_user([email, first_name, last_name, picture, username, hashedPassword]).then(() => {
-    //             req.session.user = { username }
-    //             res.status(201).send(req.session.user)
-    //         }).catch(err => {
-    //             if (error.message.match(/duplicate key/)) {
-    //                 res.status(409).send({ message: 'That user already exists in database' })
-    //             } else {
-    //                 res.status(500).send({
-    //                     message: 'Error occured on the server. Please contact the administrator'
-    //                 })
-    //             }
-    //         });
-    //     });
-    // },
+        bcrypt.hash(rescue_password, saltRounds).then(hashedPassword => {
+            db.create_rescue([rescue_name, rescue_username, logo, rescue_email, rescue_phone_number, rescue_city, rescue_state, hashedPassword]).then(() => {
+                req.session.rescue = { rescue_username }
+                res.status(201).send(req.session.rescue)
+            }).catch(err => {
+                if (error.message.match(/duplicate key/)) {
+                    res.status(409).send({ message: 'That user already exists in database' })
+                } else {
+                    res.status(500).send({
+                        message: 'Error occured on the server. Please contact the administrator'
+                    })
+                }
+            });
+        });
+    },
 
     //logging in existing user
     loginRescue: (req, res) => {
         const db = req.app.get('db');
         const { username, password } = req.body;
 
-        db.get_rescue_by_un_pw([username, password]).then(user => {
+        db.get_rescue_by_un_pw([username, password]).then(rescue => {
             if (rescue.length) {
                 bcrypt.compare(password, rescue[0].password).then(passwordMatch => {
                     if (passwordMatch) {
